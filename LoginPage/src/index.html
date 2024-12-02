@@ -1,0 +1,100 @@
+<!doctype html>
+<html ng-app="loginApp">
+<head>
+  <meta charset="utf-8">
+  <title>LoginPage</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <style>
+    body{
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: plum;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .login-container{
+            background-color: rgb(248, 219, 248);
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            width: 500px;
+            height: 400px;
+        }
+        label{
+            display: block;
+            margin-bottom: 8px;
+        }
+        input{
+          width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+        button{
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 17px;
+        }
+        p{
+            margin-top: 16px;
+            font-size: 14px;   
+        }
+        .error{
+            color: crimson;
+        }
+        .success{
+            color: green;
+        }
+  </style>
+</head>
+<body>
+  <app-root></app-root>
+  <div class="login-container" ng-controller="loginController">
+    <h1>Login Form</h1><br>
+    <form ng-submit="submitForm()">
+        <label for="username">Username:</label>
+        <input type="text" id="username" ng-model="user.username" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" ng-model="user.password" required>
+
+        <button type="submit" ng-click="login()">Login</button>
+    </form>
+    <p ng-show="loginAttempted && !loginSuccess" class="error" >Login failed!<br>Please try agian later.</p>
+    <p ng-show="loginSuccess" class="success">Login Successful!<br>Welcome to the page :)</p>
+</div>
+<script>
+    //AngularJS Module
+    var app=angular.module('loginApp',[]);
+
+    //AngularJS Controller
+    app.controller('loginController',['$scope',function($scope)
+    {
+        $scope.user={};
+        $scope.loginAttempted=false;
+        $scope.loginSuccess=false;
+
+        $scope.login=function()
+        {
+            if($scope.user.username === 'PriyankaRout' && $scope.user.password ==='Priyanka19')
+            {
+                $scope.loginSuccess=true;
+            }
+            else{
+                $scope.loginSuccess=false;
+                console.error('Login Failed');
+                alert('Wrong Username or Password!')
+            }
+            $scope.loginAttempted=true;
+        };
+    }]);
+</script> 
+</body>
+</html>

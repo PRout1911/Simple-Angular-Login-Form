@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="app.component.css"></script>
+    <script src="app.component.ts"></script>
+</head>
+<body>
+    <div class="login-container">
+        <h1>Login Form</h1>
+        <form>
+            <label for="username">Username:</label>
+            <input type="text" id="username" ng-model="user.username" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" ng-model="user.password" required>
+
+            <button type="button" (click)="login()">Login</button>
+        </form>
+        <div class="message" *ngIf="loginAttempted">
+            <p *ngIf="!loginSuccess">!Login failed!<br>Please try agian later.</p>
+            <p *ngIf="loginSuccess" class="success">Login Successful!<br>!Welcome {{user.username}}!.</p>
+        </div>
+    </div>
+  </body>
+</html>
